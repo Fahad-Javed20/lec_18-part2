@@ -1,20 +1,22 @@
-import type { CardItemType } from "../types/CardItemType";
 import CardItem from "./CardItem";
+import type { CardItemType } from "../types/CardItemType";
 
 interface CardListProps {
   items: CardItemType[];
+  onAddToCart: (price: number) => void;
 }
 
-const CardList = ({ items }: CardListProps) => {
+const CardList = ({ items, onAddToCart }: CardListProps) => {
   return (
-    <div className="flex flex-wrap justify-center gap-7 pb-16">
-      {items.map((item, index) => (
+    <div className="flex flex-wrap justify-center gap-4">
+      {items.map((item) => (
         <CardItem
-          key={index}
+          key={item.id}
           image={item.image}
           name={item.name}
           description={item.description}
           price={item.price}
+          onAddToCart={onAddToCart}
         />
       ))}
     </div>
